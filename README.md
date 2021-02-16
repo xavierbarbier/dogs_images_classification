@@ -1,1 +1,1 @@
-# dogs_images_classification
+# app_training
