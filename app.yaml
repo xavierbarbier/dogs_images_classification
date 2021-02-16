@@ -8,7 +8,7 @@ manual_scaling:
 # Timeout is 60sec
 entrypoint: gunicorn -b :$PORT main_v2:app.server --timeout 60 --workers 1
 # Instance name
-service: dashapp-ae-v2
+service: app
 handlers:
   - url: /.*
     script: auto
