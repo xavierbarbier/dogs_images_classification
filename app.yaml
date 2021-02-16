@@ -1,13 +1,15 @@
-service: default
+# config_appengine_v2.yaml
+# Run by Python 3.7
 runtime: python37
-
-basic_scaling:
-    max_instances: 2
-    idle_timeout: 10m
-
-resources:
-    cpu: 1
-    memory_gb: 1
-    disk_size_gb: 10
-
-entrypoint: gunicorn -b 0.0.0.0:8080 main:server
+# Machine config  https://cloud.google.com/appengine/docs/standard
+instance_class: B2
+manual_scaling:
+  instances: 1
+# Timeout is 60sec
+entrypoint: gunicorn -b :$PORT main_v2:app.server --timeout 60 --workers 1
+# Instance name
+service: dashapp-ae-v2
+handlers:
+  - url: /.*
+    script: auto
+    secure: always
