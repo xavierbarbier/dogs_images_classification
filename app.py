@@ -9,14 +9,17 @@ import tensorflow_hub as hub
 import os
 import numpy as np
 
-export_path_keras = "1613379473.h5"
+
+
+
+export_path_keras = "/content/drive/MyDrive/app/1613379473.h5"
 
 reloaded = tf.keras.models.load_model(
   export_path_keras, 
   # `custom_objects` tells keras how to load a `hub.KerasLayer`
   custom_objects={'KerasLayer': hub.KerasLayer})
 
-class_names_clean = np.load("class_names_clean.npy")
+class_names_clean = np.load("/content/drive/MyDrive/app/class_names_clean.npy")
 
 IMAGE_RES = 224
 
@@ -59,7 +62,7 @@ def update_output(contents):
       decoded_image = base64.b64decode(encoded_image)
       image = tf.io.decode_image(decoded_image, channels=3, dtype=tf.dtypes.uint8, expand_animations=False)
       image = tf.image.resize(image, [IMAGE_RES,IMAGE_RES] )/255.0
-      input_arr = keras.preprocessing.image.img_to_array(image)
+      input_arr = tf.keras.preprocessing.image.img_to_array(image)
       input_arr = np.array([input_arr])
       predictions = reloaded.predict(input_arr)
       predicted_ids = np.argmax(predictions, axis=-1)
@@ -73,6 +76,3 @@ def update_output(contents):
             'wordBreak': 'break-all'
         })
     ])
-
-if __name__ == '__main__':
-    app.run_server(debug=True)
