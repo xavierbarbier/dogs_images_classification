@@ -12,14 +12,14 @@ import numpy as np
 
 
 
-export_path_keras = "/content/drive/MyDrive/app/1613379473.h5"
+export_path_keras = "1613379473.h5"
 
 reloaded = tf.keras.models.load_model(
   export_path_keras, 
   # `custom_objects` tells keras how to load a `hub.KerasLayer`
   custom_objects={'KerasLayer': hub.KerasLayer})
 
-class_names_clean = np.load("/content/drive/MyDrive/app/class_names_clean.npy")
+class_names_clean = np.load("class_names_clean.npy")
 
 IMAGE_RES = 224
 
