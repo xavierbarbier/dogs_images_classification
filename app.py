@@ -78,9 +78,6 @@ def update_output(contents):
       return html.Div([        
         html.Img(src=img, width=255),
         html.Hr(),
-        html.Div('Prediction'),
-        html.Pre(predicted_class_names, style={
-            'whiteSpace': 'pre-wrap',
-            'wordBreak': 'break-all'
-        })
+        html.H4('Prediction'),
+        html.H5(predicted_class_names)
     ])
