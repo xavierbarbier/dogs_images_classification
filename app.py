@@ -31,7 +31,9 @@ server = app.server
 
 app.layout = html.Div([
     html.Div([
-        html.Div([
+        html.Div([          
+            html.Img(src="/img/PAW_Patrol_Logo.png",
+            style={ "height": "200px"}),
             html.H3('Dog breed prediction'),
             html.H6('By Xavier Barbier - @xavbarbier'),
             dcc.Upload(
